@@ -4,7 +4,7 @@ from django.db import models
 class Customer(models.Model):
     firstname=models.CharField(max_length=42)
     lastname=models.CharField(max_length=42)
-    email=models.EmailField(max_length=12)
+    email=models.EmailField(max_length=200)
     phonenumber=models.CharField(max_length=20)
     password = models.CharField(max_length=10)
     address=models.CharField(max_length=32)
