@@ -63,13 +63,13 @@
     </style>
 </head>
 <div class="allproducts">
-    {% for product in carts %}
+    {% for order in orders %}
         <div class="product-container">
-            <img src="{{product.image.url}}" class="img"/>
-            <h1 class="product-name">{{ product.name }}</h1>
+            <img src="{{order.image.url}}" class="img"/>
+            <h1 class="product-name">{{ order.name }}</h1>
            
-             <a href="{% url 'product_detail' id=product.id %}">View Details</a>
-             <a href="{% url 'product_update_view' id=product.id %}">Edit Product</a>
+             <a href="{% url 'order_detail' id=product.id %}">View Details</a>
+             <a href="{% url 'order_update_view' id=product.id %}">Edit Product</a>
         </div>
     {% endfor %}
 </div>
