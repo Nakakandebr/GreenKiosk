@@ -45,4 +45,4 @@ def product_update_view(request, id):
 def delete_product(request, id):
     product= Product.objects.get(id=id)
     product.delete()
-    return redirect("product_list_view")
+    return redirect("products_list")

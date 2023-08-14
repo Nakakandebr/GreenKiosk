@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
         }
 
         .product-name {
-            color: #007bff;
+            color: #00ff9d;
             font-size: 18px;
             margin-top: 10px;
             margin-bottom: 20px;
@@ -49,7 +50,7 @@
 
         a {
             display: inline-block;
-            background-color: #007bff;
+            background-color: #00ff9d;
             color: #fff;
             text-decoration: none;
             padding: 10px 20px;
@@ -58,20 +59,28 @@
         }
 
         a:hover {
-            background-color: #0056b3;
+            background-color: #00ff9d;
         }
     </style>
 </head>
 <div class="allproducts">
-    {% for product in carts %}
+    {% for product in cart_products %}
         <div class="product-container">
-            <img src="{{product.image.url}}" class="img"/>
-            <h1 class="product-name">{{ product.name }}</h1>
-           
-             <a href="{% url 'product_detail' id=product.id %}">View Details</a>
-             <a href="{% url 'product_update_view' id=product.id %}">Edit Product</a>
+            <img src="{{product.product_image.url}}" class="img"/>
+            <h1 class="product-name"> Name: {{ product.product_name }}</h1>
+            <h1 class="product-name"> Price: {{ product.product_price}}</h1>
+            <h1 class="product-name">Quantity: {{ product.product_quantity }}</h1>
+
+            <a href="{% url 'cart_detail' id=product.id %}">View Details</a>
+            <a href="{% url 'edit_cart' id=product.id %}">Edit Product</a>
+            <a  class="name" href="{% url 'delete_cart' id=product.id %}">Remove</a>
+        
+          
+          
         </div>
     {% endfor %}
 </div>
 </body>
 </html>
+
+

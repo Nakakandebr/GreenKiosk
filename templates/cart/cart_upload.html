@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Upload to Cart</title>
+</head>
+<body>
+    <h1>Upload to Cart</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"><a href="{% url 'list_cart' %}">Save</a></button>
+    </form>
+  
+</body>
+</html>

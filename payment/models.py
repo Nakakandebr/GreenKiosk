@@ -1,47 +1,45 @@
+
+from django.core.exceptions import ValidationError
 from django.db import models
 
-# Create your models here.
-
 class Payment(models.Model):
+    AMOUNT_CURRENCY_CHOICES = [
+        ('USD', 'US Dollar'),
+        ('EUR', 'Euro'),
+        ('UGX', 'Ugx'),
+        ('KES', 'Kenyan Shilling'),
+        # Add more currency choices as needed
+    ]
+    
+    PAYMENT_METHOD_CHOICES = [
+        ('credit_card', 'Credit Card'),
+        ('paypal', 'PayPal'),
+        ('mobile_money', 'Mobile Money'),
+        # Add more payment method choices as needed
+    ]
+    
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=3)
-    date = models.DateTimeField(auto_now =True)
-    method = models.CharField(max_length=10)
+    currency = models.CharField(max_length=3, choices=AMOUNT_CURRENCY_CHOICES)
+    date = models.DateTimeField(auto_now=True)
+    method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES)
     customer_id = models.IntegerField()
     order_id = models.IntegerField()
+    card_number = models.CharField(max_length=16, blank=True, null=True)
+    expiration_date = models.DateField(blank=True, null=True)
+    cvv = models.CharField(max_length=4, blank=True, null=True)
+    paypal_email = models.EmailField(blank=True, null=True)
 
-    def is_valid(self):
-        # Check if the amount is positive
-        if self.amount <= 0:
-            return False
+    def save(self, *args, **kwargs):
+        if self.method == 'credit_card':
+            if not all([self.card_number, self.expiration_date, self.cvv]):
+                raise ValidationError("Credit card information is incomplete")
+        elif self.method == 'paypal':
+            if not self.paypal_email:
+                raise ValidationError("PayPal email is required")
+        elif self.method == 'mobile_money':
+           
+            pass
+        else:
+            raise ValidationError("Invalid payment method")
 
-        # Check if the currency is valid
-        if self.currency not in ["KES", "UG", "TZ"]:
-            return False
-
-        # Check if the date is in the future
-        if datetime.date.today() > self.date:
-            return False
-
-        # Check if the method is valid
-        if self.method not in ["M-Pesa", "Cash", "PayPal"]:
-            return False
-
-        # Check if the customer ID is valid
-        if not customer_id:
-            return False
-
-        # Check if the order ID is valid
-        if not order_id:
-            return False
-
-        return True
-
-    def fulfill(self):
-        # Check if the payment is valid
-        if not self.is_valid():
-            return False
-
-        
- 
-        return True
+        super().save(*args, **kwargs)

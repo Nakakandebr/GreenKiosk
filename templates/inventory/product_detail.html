@@ -64,6 +64,7 @@
     <img src="{{product.image.url}}" alt="{{product.name}}"/>
     <p>{{product.description}}</p>
     <span>{{product.price}}</span>
-    <button>Add to cart</button>
+   
+    <button type="submit"><a href="{% url 'list_cart' %}">Add to cart</a></button>
 </body>
 </html>

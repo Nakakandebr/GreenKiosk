@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make a Payment</title>
+</head>
+<body>
+    <h1>Make a Payment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="id_amount">Amount:</label>
+        <input type="number" name="amount" id="id_amount" step="0.01" required>
+        <br>
+        <label for="id_currency">Currency:</label>
+        <select name="currency" id="id_currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currency options as needed -->
+        </select>
+        <br>
+        <label for="id_payment_method">Payment Method:</label>
+        <select name="payment_method" id="id_payment_method" required>
+            <option value="credit_card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+          
+        </select>
+        <br>
+        <label for="id_customer_id">Customer ID:</label>
+        <input type="text" name="customer_id" id="id_customer_id" required>
+        <br>
+        <label for="id_order_id">Order ID:</label>
+        <input type="text" name="order_id" id="id_order_id" required>
+        <br>
+        <label for="id_card_number">Card Number:</label>
+        <input type="text" name="card_number" id="id_card_number">
+        <br>
+        <label for="id_expiration_date">Expiration Date:</label>
+        <input type="date" name="expiration_date" id="id_expiration_date">
+        <br>
+        <label for="id_cvv">CVV:</label>
+        <input type="text" name="cvv" id="id_cvv">
+        <br>
+        <label for="id_paypal_email">PayPal Email:</label>
+        <input type="email" name="paypal_email" id="id_paypal_email">
+        <br>
+        <button type="submit">Submit Payment</button>
+    </form>
+</body>
+</html>
