@@ -6,9 +6,10 @@ from .models import Product
 # Create your views here.
 def product_upload_view(request):
     if request.method =="POST" :
-        form= ProductUploadForm(request.POST)
+        form= ProductUploadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            return redirect("products_list")
     else:
         form = ProductUploadForm()
         
@@ -20,10 +21,9 @@ def products_list(request):
     return render(request, 'inventory/products_list.html', {'products':products})
 
 
-def product_detail(request , id):
+def product_detail(request, id):
     product = Product.objects.get(id=id)
     return render(request , 'inventory/product_detail.html',{'product':product})
-
 
 
 
@@ -35,7 +35,7 @@ def product_update_view(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("product_detail", id=product.id)
+            return redirect("products_list")
     
     else:
         form = ProductUploadForm(instance=product)
@@ -46,3 +46,5 @@ def delete_product(request, id):
     product= Product.objects.get(id=id)
     product.delete()
     return redirect("products_list")
+
+
