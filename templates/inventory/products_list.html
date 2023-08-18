@@ -11,6 +11,10 @@
             margin: 0;
             padding: 0;
         }
+        h1{
+            margin-left: 45%;
+            color: #2980b9;
+        }
 
         .allproducts {
             display: flex;
@@ -79,14 +83,23 @@
         .name:hover {
             background-color: #2980b9;
         }
+        .but {
+            margin-left: 80%;
+            /* margin-top: 2%; */
+
+   
+  }
+
+ 
 
     </style>
     
 </head>
 <nav>
-    <a href="{% url 'view_cart' %}"><button>View Cart</button></a>
+   
 </nav>
 <h1>All Products</h1>
+<a href="{% url 'view_cart' %}"><button class="but">View Cart</button></a>
 <div class="allproducts">
     {% for product in products %}
         <div class="product-container">

@@ -51,7 +51,8 @@
             display: block;
             margin-top: 15px;
             text-decoration: none;
-            color: #007bff;
+            color:aqua
+        ;
         }
     </style>
 </head>
@@ -59,11 +60,12 @@
     <div class="allproducts">
         {% for vendor in vendors %}
             <div class="product-container">
-                <img src="{{ vendor.image.url }}" class="img" alt="Customer Image">
+                <img src="{{ vendor.image.url }}" class="img" alt="Vendor Image">
                 <h1 class="customername-name">{{ vendor.firstname }}</h1>
                 <h3 class="customerlast">{{ vendor.lastname }}</h3>
-                <a href="{% url 'vendor_detail' customer.id %}">View Details</a>
-                <a href="{% url 'vendor_update_view' customer.id %}">Edit details</a>
+                <a href="{% url 'vendor_detail' vendor.id %}">View Details</a>
+                <a href="{% url 'vendor_update_view' vendor.id %}">Edit details</a>
+                <a href="{% url 'delete_vendor' vendor.id %}">Remove Vendor</a>
             </div>
         {% endfor %}
     </div>
