@@ -11,9 +11,34 @@
             margin: 0;
             padding: 0;
         }
+      
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #080710;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
         h1{
             margin-left: 45%;
-            color: #2980b9;
+            color: #41b929;
         }
 
         .allproducts {
@@ -61,13 +86,13 @@
             padding: 8px 15px;
             text-decoration: none;
             color: #fff;
-            background-color: #3498db;
+            background-color: #41b929;
             border-radius: 5px;
             transition: background-color 0.2s ease-in-out;
         }
 
         .product-actions a:hover {
-            background-color: #2980b9;
+            background-color: #41b929;
         }
         .name {
             display: inline-block;
@@ -75,7 +100,7 @@
             padding: 8px 15px;
             text-decoration: none;
             color: #fff;
-            background-color: #3498db;
+            background-color:#41b929;
             border-radius: 5px;
             transition: background-color 0.2s ease-in-out;
         }
@@ -84,8 +109,17 @@
             background-color: #2980b9;
         }
         .but {
-            margin-left: 80%;
-            /* margin-top: 2%; */
+             margin-left: 80%;
+           
+            display: inline-block;
+           
+            padding: 14px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #41b929;
+            border-radius: 5px; 
+            
+            
 
    
   }
@@ -98,24 +132,24 @@
 <nav>
    
 </nav>
-<h1>All Products</h1>
-<a href="{% url 'view_cart' %}"><button class="but">View Cart</button></a>
+<h1>All Products</h1> 
+<a href="{% url 'view_cart' %}"><button class="but">Open Cart</button></a>
+
 <div class="allproducts">
     {% for product in products %}
         <div class="product-container">
-          
-                <img src="{{ product.image.url }}" />
+            <img src="{{ product.image.url }}" />
           
             <h1 class="product-name">{{ product.name }}</h1>
            
-            <a  class="name" href="{% url 'product_detail' id=product.id %}">View Details</a>
-
+             <a  class="name" href="{% url 'product_detail' id=product.id %}">View</a>
              <a class="name" href="{% url 'product_update_view' id=product.id %}">Edit </a>
-             <a  class="name" href="{% url 'delete_product' id=product.id %}">Remove</a>
-             <a class="name" href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
+             <a  class="name" href="{% url 'delete_product' id=product.id %}">Delete</a>
+             <a class="name" href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add </button></a>
         
         </div>
     {% endfor %}
+    
 </div>
 </body>
 </html>

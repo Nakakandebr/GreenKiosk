@@ -7,7 +7,7 @@
 </head>
 <body> 
     <h1>Upload  Customer information</h1>
-    <form method="POST"  class="upload-form">
+    <form method="POST"  class="upload-form" enctype="multipart/form-data">
        {% csrf_token%}
        {{form.as_p}}
 
