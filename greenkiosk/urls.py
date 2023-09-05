@@ -27,10 +27,11 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('customer/', include("customer.urls")),
     # path('categories/', include('categories.urls')),
-    # path('order/', include('order.urls')),
+    path('order/', include('order.urls')),
     path('payment/', include('payment.urls')),
     path('vendors/', include('vendors.urls')),
     path('register/', include("register.urls")),
+    path("api/" , include("api.urls")),
     
    
     

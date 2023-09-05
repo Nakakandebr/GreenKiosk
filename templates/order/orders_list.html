@@ -67,9 +67,9 @@
         <div class="product-container">
             <img src="{{order.image.url}}" class="img"/>
             <h1 class="product-name">{{ order.name }}</h1>
-           
-             <a href="{% url 'order_detail' id=product.id %}">View Details</a>
-             <a href="{% url 'order_update_view' id=product.id %}">Edit Product</a>
+            
+             <a href="{% url 'order_detail' id=order.id %}">View Details</a> 
+             <a href="{% url 'order_update_view' id=order.id %}">Edit Product</a> 
         </div>
     {% endfor %}
 </div>

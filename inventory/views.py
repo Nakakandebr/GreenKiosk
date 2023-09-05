@@ -42,9 +42,21 @@ def product_update_view(request, id):
 
     return render(request, "inventory/edit_product.html", {'form': form})
 
+
 def delete_product(request, id):
     product= Product.objects.get(id=id)
     product.delete()
     return redirect("products_list")
 
 
+def search_bar(request):
+    if request.method == 'GET':
+        query = request.GET.get('query','' )
+        products = None
+
+        if query:
+            products = Product.objects.filter(name__icontains=query)
+            return render(request, 'inventory/searchbar.html', {"products": products  , "query": query})
+    
+   
+    return render(request, 'searchbar.html', {})
